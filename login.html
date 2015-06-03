@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head lang="pt-br">
+        <meta charset="UTF-8"/>
+        <title>Sistema de Avaliação</title>
+		<link href="css/bootstrap.css" rel="stylesheet">
+        <!-- Chamadas JS -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>        
+    </head>
+    <body>
+
+     <nav class="navbar navbar-default ">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="#">Avalie seu Professor</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Login/Cadastro</a></li>
+            <li><a href="#about">Adicionar Professor</a></li>
+            <li><a href="#contact">Usuários</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <div class = "container">
+  <div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <div class = "row">
+        <div class= "col-xs-8 col-xs-offset-2">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">LOGIN</a></li>
+                <li role="presentation"><a href="#cadastro" aria-controls="cadastro" role="tab" data-toggle="tab">CADASTRO</a></li>
+          </ul>
+      </div>
+  </div>
+
+  <!-- Tab panes -->
+  <div class = "row">
+    <div class= "col-xs-8 col-xs-offset-2">
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="login">
+            <!-- close tab pane row -->
+            <!-- TODO: Change it to real padding -->
+            <div class="form-group"></div>
+
+            <form class="form">
+
+               <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></div>
+                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Nome">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></div>
+                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Email">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></div>
+                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Senha">
+                </div>
+             </div>
+
+              <button type="submit" class="btn btn-primary  btn-large btn-block">Cadastro</button>
+            </form>
+
+
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="cadastro">
+            <div class="form-group"></div>
+
+            <form class="form">
+
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></div>
+                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Usuário - Email">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></div>
+                  <input type="password" class="form-control" id="exampleInputAmount" placeholder="Senha">
+                </div>
+             </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+        </div> 
+      </div><!-- close tab content -->
+    </div> <!-- close tab pane col -->
+  </div> <!-- close tab pane row -->
+
+</div>
+     </body>
+
+    <!--script>
+        $(function () {
+            $('#myTab li:eq(1) a').tab('show');
+        });
+    </script-->
+</html>
+
+
+
+
+
+
+
+
+
+	
+		
+	
+			
+		

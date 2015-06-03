@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head lang="pt-br">
+        <meta charset="UTF-8"/>        
+        <title>Sistema de Avaliação</title>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <!-- Chamadas JS -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>        
+    </head>
+    <body>
+        
+        <nav role="navigation" class="navbar navbar-default">
+        
+            <div class="navbar-header">
+                <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">                    
+                    <span class="sr-only">Navegação Responsiva</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                
+                </button>                
+                <a href="#" class="navbar-brand">Avalie Seu Professor</a>
+            </div>
+            
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li><a href="#">Login/Cadastro</a></li>
+                    <li><a href="#">Adicionar Professor</a></li>
+                    <li><a href="#">Usuários</a></li>
+                    
+                </ul>
+            </div>
+        
+        </nav>
+        
+     
+        
+        <section role="navigation" class="navbar navbar-default">
+            
+            <article>
+            
+            
+            <hgroup>
+			
+                <h3>Encontre seu Professor</h3>
+	
+		    </hgroup>
+		
+            
+    <div class="container">
+
+     <div class="row">
+      <div class="col-xs-4">
+       
+            
+            
+            Nome: <input type="text" name="nome"  size="45"> </p>
+            
+            Departamento:  
+           <select name="selecione">
+              <option value="Selecione" name="selecione"> Selecione </option> 
+              <option value="DCC" name="selecione">Departamento de Ciência da Computação</option>  
+              <option value="MAT" name="selecione">Departamento de Matemática</option>
+              <option value="EST" name="selecione">Departamento de Estatística</option>  
+              <option value="ADM" name="selecione">Departamento de Administração</option>
+              <option value="FIS" name="selecione">Departamento de Física</option>
+               <option value="LET" name="selecione">Departamento de Letras</option>
+            </select> 
+        
+        <p><input type="submit"onclick="enviar()"; value="Buscar"></p>
+            
+       </article>
+         
+        
+        
+          
+       </div>
+      </div>
+    </div>
+
+ </section>
+             
+        
+     </body>
+</html>
