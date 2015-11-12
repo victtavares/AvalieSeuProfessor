@@ -19,7 +19,7 @@
           <th scope="row">{{ u.id }}</a></th>
           <td>{{ u.name }}</td>
           <td>{{ u.email }}</td>
-          <td><a class="btn btn-danger" href="#" role="button">Remover</a></td>
+          <td><a class="btn btn-danger" href="{{url_for("removerUsuario",id = u.id)}}" role="button">Remover</a></td>
         </tr>
         {% endfor %}
       </tbody>

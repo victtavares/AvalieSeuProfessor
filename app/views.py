@@ -4,6 +4,7 @@ from .forms import LoginForm, RegisterForm, RegisterProfessorForm, BuscaForm, Po
 from .models import User, Professor, Department, Post
 from flask.ext.login import login_required, logout_user, login_user, current_user
 from decorators import admin_required, permission_required
+import datetime
 
 @app.route('/',  methods=['GET','POST'])
 @app.route('/index',  methods=['GET','POST'])
@@ -17,59 +18,6 @@ def index():
 
     return render_template("index.html",
                            form = bForm)
-
-
-@app.route('/professores/<department>')
-@login_required
-def listProfessores(department):
-
-    dept = Department.query.get(department)
-    allProfessorsFromDept = Professor.query.filter_by(department_id = dept.id , wasAcceptedByAdmin = True)
-    print(allProfessorsFromDept)
-    return render_template("lista_professor.html",
-                            dept = dept,
-                            professors = allProfessorsFromDept)
-
-@app.route('/professor/<id>',  methods=['GET','POST'])
-@login_required
-def detailProfessor(id):
-    professor = Professor.query.get(id)
-
-    return render_template("detail_professor.html",
-                            professor = professor)
-
-@app.route('/professor/<id>/avalia',  methods=['GET','POST'])
-@login_required
-def avaliaProfessor(id):
-    pForm = PostForm()
-    professor = Professor.query.get(id)
-    print(professor.id)
-
-
-
-    if pForm.validate_on_submit() : 
-
-        currentPost = Post(body = pForm.body.data,
-        course = pForm.course.data,
-        ratingTeaching = pForm.ratingTeaching.data,
-        ratingEase = pForm.ratingEase.data,
-        gradeOnCourse = pForm.gradeOnCourse.data,
-        hideUser = pForm.hideUser.data,
-        author = current_user,
-        about = professor)
-
-        if currentPost == None:
-            flash("Erro ao avaliar o professor, tente mais tarde!")
-        else:
-            db.session.add(currentPost)
-            db.session.commit()
-            flash("Professor avaliado com sucesso!")
-
-    return render_template("avalia_professor.html",
-                            professor = professor,
-                            form = pForm)
-    
-
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -90,6 +38,13 @@ def login():
                            lform = lform,
                            loginActive = "active",
                            registerActive = "")
+
+@app.route('/logout')
+@login_required
+def logout():
+ logout_user()
+ flash('You have been logged out.')
+ return redirect(url_for('login'))
 
 
 @app.route('/register', methods=['GET','POST'])
@@ -114,6 +69,10 @@ def register():
                            loginActive = "",
                            registerActive = "active")
 
+
+
+
+
 @app.route('/users')
 @login_required
 @admin_required
@@ -122,13 +81,37 @@ def listarUsuarios():
     return render_template('listar_usuarios.html',
         users = users)
 
+@app.route('/users/delete/<id>')
+@login_required
+@admin_required
+def removerUsuario(id):
+    user = User.query.get(id)
+    db.session.delete(user)
+    db.session.commit()
+    return redirect(url_for("listarUsuarios"))
+
+
+
 @app.route('/professors')
 @login_required
 @admin_required
-def listarProfessores():
+def listarProfessoresPendentes():
     professors = Professor.query.filter_by(wasAcceptedByAdmin = False)
     return render_template('lista_professores.html',
         professors = professors)
+
+@app.route('/professors/approve/<id>')
+@login_required
+@admin_required
+def aprovarProfessor(id):
+    professor = Professor.query.get(id)
+    professor.wasAcceptedByAdmin = True
+    db.session.commit()
+    return redirect(url_for("listarProfessoresPendentes"))
+
+
+
+ 
  
 
 @login_required
@@ -158,10 +141,62 @@ def adicionarProfessor():
     return render_template('adicionar_professor.html',
                             form = form)
 
-@app.route('/logout')
-@login_required
-def logout():
- logout_user()
- flash('You have been logged out.')
- return redirect(url_for('login'))
 
+@app.route('/professores/<department>')
+@login_required
+def listProfessores(department):
+
+    dept = Department.query.get(department)
+    allProfessorsFromDept = Professor.query.filter_by(department_id = dept.id , wasAcceptedByAdmin = True)
+    print(allProfessorsFromDept)
+    return render_template("lista_professor.html",
+                            dept = dept,
+                            professors = allProfessorsFromDept)
+
+
+
+@app.route('/professor/<id>',  methods=['GET','POST'])
+@login_required
+def detailProfessor(id):
+    professor = Professor.query.get(id)
+
+    return render_template("detail_professor.html",
+                            professor = professor)
+
+@app.route('/professor/<id>/post',  methods=['GET','POST'])
+@login_required
+def avaliaProfessor(id):
+    pForm = PostForm()
+    professor = Professor.query.get(id)
+    if pForm.validate_on_submit() : 
+
+        currentPost = Post(body = pForm.body.data,
+        course = pForm.course.data,
+        ratingTeaching = pForm.ratingTeaching.data,
+        ratingEase = pForm.ratingEase.data,
+        gradeOnCourse = pForm.gradeOnCourse.data,
+        hideUser = pForm.hideUser.data,
+        author = current_user,
+        timestamp = datetime.datetime.utcnow(),
+        about = professor)
+
+        if currentPost == None:
+            flash("Erro ao avaliar o professor, tente mais tarde!")
+        else:
+            db.session.add(currentPost)
+            db.session.commit()
+            flash("Professor avaliado com sucesso!")
+
+    return render_template("avalia_professor.html",
+                            professor = professor,
+                            form = pForm)
+
+
+@app.route('/post/delete/<idAvaliacao>/professor/<idProfessor>')
+@login_required
+@admin_required
+def removerAvaliacao(idProfessor, idAvaliacao):
+    post = Post.query.get(idAvaliacao)
+    db.session.delete(post)
+    db.session.commit()
+    return redirect(url_for("detailProfessor", id = idProfessor))

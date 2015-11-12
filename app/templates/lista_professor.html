@@ -9,9 +9,6 @@
         <tr>
           <th>ID</th>
           <th>Nome</th>
-          {% if current_user.isAdmin() %}
-          <th>Ação</th>
-          {% endif %}
         </tr>
       </thead>
       <tbody>
@@ -19,23 +16,8 @@
         <tr>
           <th scope="row"><a href="{{url_for("detailProfessor",id = p.id)}}">{{ p.id }}</a></th>
           <td><a href="{{url_for("detailProfessor",id = p.id)}}">{{ p.name }}</a></td>
-          {% if current_user.isAdmin() %}
-          <td><a class="btn btn-danger" href="#" role="button">Remover</a></td>
-          {% endif %}
         </tr>
         {% endfor %}
-        <!-- <tr>
-
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td><a class="btn btn-default" href="#" role="button">Remover</a></td>
-        </tr>
-        <tr>
-
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td><a class="btn btn-default" href="#" role="button">Remover</a></td>
-        </tr> -->
 
       </tbody>
 </table>

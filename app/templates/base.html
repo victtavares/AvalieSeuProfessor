@@ -22,7 +22,7 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="#">Avalie seu Professor</a>
+          <a class="navbar-brand" href="{{ url_for('index') }}">Avalie seu Professor</a>
         </div>
 
          {% if current_user.is_authenticated %}
@@ -32,7 +32,7 @@
             <li><a href="{{ url_for('adicionarProfessor') }}">Adicionar Professor</a></li>
             {% if current_user.isAdmin() %}
             <li><a href="{{ url_for('listarUsuarios') }}">Usuários</a></li>
-            <li><a href="{{ url_for('listarProfessores') }}">Professores Pendentes</a></li>
+            <li><a href="{{ url_for('listarProfessoresPendentes') }}">Professores Pendentes</a></li>
             {% endif %}
             <li><a href="{{ url_for('logout') }}">Sair</a></li>
           </ul>

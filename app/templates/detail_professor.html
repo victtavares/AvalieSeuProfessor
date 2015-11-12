@@ -64,7 +64,7 @@
     <!-- Side with course and average grade-->
     <div class= "col-md-2 col-height border-left-content" style = "background-color: rgba(180, 180, 180, 0.3);">
       <div class="inside">
-      <p class="lead" style="font-size: 14px; margin-bottom: 20px; margin-top: 20px;">Engenharia de Software</p>
+      <p class="lead" style="font-size: 14px; margin-bottom: 20px; margin-top: 20px;">{{ c.course }}</p>
       <p class="lead" style="font-size: 14px; margin-bottom: 20px; margin-top: 20px;">Nota Recebida: {{c.gradeOnCourse}}</p>
     </div>
     </div>
@@ -75,7 +75,7 @@
       <p class="lead" style="font-size: 14px; margin-bottom: 20px;">{{c.body}}</p>
 
       {% if current_user.isAdmin() %}
-      <button type="button" class="btn btn-danger btn-sm">Remover</button>
+      <a type="button" class="btn btn-danger btn-sm" href="{{url_for("removerAvaliacao",idProfessor = professor.id, idAvaliacao = c.id)}}">Remover</a>
       {% endif %}
     </div> <!-- close comment text inside -->
     </div> <!-- close comment text column -->

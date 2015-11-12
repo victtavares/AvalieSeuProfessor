@@ -45,4 +45,4 @@ class PostForm(Form):
   ratingTeaching = IntegerField('ratingTeaching', validators=[NumberRange(min=0,max=10)])
   ratingEase = IntegerField('ratingEase', validators=[NumberRange(min=0,max=10)])
   gradeOnCourse = IntegerField('ratingEase', validators=[NumberRange(min=0,max=10)])
-  hideUser = BooleanField('hideUser', validators=[DataRequired()])
+  hideUser = BooleanField('hideUser', validators=[])

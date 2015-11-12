@@ -19,7 +19,7 @@
           <th scope="row">{{ u.id }}</a></th>
           <td>{{ u.name }}</td>
           <td>{{ u.currentDepartment.name }}</td>
-          <td><a class="btn btn-success" href="#" role="button">Aprovar</a></td>
+          <td><a class="btn btn-success" href="{{url_for("aprovarProfessor",id = u.id)}}" role="button">Aprovar</a></td>
         </tr>
         {% endfor %}
       </tbody>
