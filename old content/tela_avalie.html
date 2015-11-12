@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head lang="pt-br">
+        <meta charset="UTF-8"/>
+        <title>Sistema de Avaliação</title>
+		<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/same-height.css" rel="stylesheet">
+        <!-- Chamadas JS -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>        
+    </head>
+    <body>
+
+     <nav class="navbar navbar-default ">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="#">Avalie seu Professor</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Login/Cadastro</a></li>
+            <li><a href="#about">Adicionar Professor</a></li>
+            <li><a href="#contact">Usuários</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+  <div class = "container">
+  <!-- Professor Information -->
+  <div class="jumbotron" style = "padding: 20px">
+    <h2>O que você PODE e o que você não PODE fazer...</h2>
+    <h4>Você Pode</h4>
+    <ul>
+      <li>Checar seus comentários antes de postar. O nome da matéria precisa está correto e não custa nada dar uma olhada na gramática.</li>
+      <li>Discutir as abilidades professionais do professor incluindo estilo de ensino e se ele está cobrindo todo o assunto corretamente.</li>
+    </ul>
+    <h4>Você não Pode </h4>
+     <ul>
+      <li>Usar palavrões, xingamentos, termos depreciativos ou "linguagem definitiva" (e.g, "sempre", "nunca", etc). E não afirme que um professor demonstrou favoritismo ou preconceito em relação a algum aluno. </li>
+    </ul>
+  </div>
+
+  <div class = "row">
+    <h3 style = "margin-bottom: 20px;">Avaliando o Professor Victor Tavares</h3>
+
+      <form class="form-horizontal">
+
+        <div class="form-group">
+          <label for="inputMateriaCursada" class="col-md-offset-2 col-md-2 control-label">Matéria Cursada</label>
+          <div class="col-md-5">
+            <input type="text" class="form-control" id="inputMateriaCursada" placeholder="Digite aqui a matéria que você cursou com Victor">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputNotaDidatica" class="col-md-offset-1 col-md-3 control-label">Nota para didática (0-10)</label>
+          <div class="col-md-1">
+            <input type="number" class="form-control" id="inputNotaDidatica" min="0" max="10" value = "0">
+          </div>
+
+          <label for="inputNotaFacilidade" class="col-md-3 control-label">Nota para Facilidade(0-10)</label>
+          <div class="col-md-1">
+            <input type="number" class="form-control" id="inputNotaFacilidade" min="0" max="10" value = "0">
+          </div>
+        </div>
+
+        <h5 style = "text-align: center; margin-bottom: 20px;">Fale um pouco mais sobre esse Professor</label></h5>
+
+         <div class="form-group">
+          <div class = "col-md-offset-2 col-md-8">
+            <textarea class="form-control" rows="3"></textarea>
+          </div>
+         </div>
+
+         <h5 style = "text-align: center; margin-top: 40px; margin-bottom: 20px;">Opcionais</h5>
+        
+         <div class="form-group">
+          <label for="inputNotaDisciplina" class="col-md-offset-3 col-md-4 control-label">Nota na disciplina com o Professor (0-10)</label>
+          <div class="col-md-1">
+            <input type="number" class="form-control" id="inputNotaDisciplina" min="0" max="10" value = "0">
+          </div>
+        </div>
+
+        <div class="form-group">
+
+
+    <div class="col-md-offset-2 col-md-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Deseja fazer este comentário de forma oculta?
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class = "row" >
+    <div class="col-md-offset-5 col-md-3 " style = "margin-bottom= 100px; margin-top: 20px;">
+    <button type="button" class="btn btn-success btn-lg btn-block">Submeter</button>
+    <button type="button" class="btn btn-danger btn-lg btn-block">Cancelar</button>
+    </div>
+  </div>    
+
+      </form>
+
+  </div>
+
+
+
+
+  
+
+</div> <!-- close container -->
+</body>
+
+</html>

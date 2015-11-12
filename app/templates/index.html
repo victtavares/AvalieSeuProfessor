@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 style = "margin:30px;">Oi, {{  current_user.name }}! está procurando por algum professor? </h3>
+
+      
+<div class = "container">
+
+<form class="form" name = "form" method="post" action = "{{ url_for('index') }}" >
+{{ form.hidden_tag() }}
+  <div class="form-group">
+    <label for="input" class=" col-md-offset-3 col-md-9 control-label">Qual o departamento?</label>
+    <div class="col-md-5 col-md-offset-3">
+      {{form.department(placeholder = "Ex: (Departamento de Matemática)", class = "form-control") }}
+    </div>
+  </div>
+
+    <div class = "row"  >
+     <div class ="col-md-offset-3 col-md-6" style = "margin-top: 30px;"> <button type="submit" class="btn btn-success btn-lg btn-block">Buscar</button>
+      </div>
+    </div>  
+  </form>
+
+  </div><!-- close container --> 
+
+   
+</section>
+{% endblock %}

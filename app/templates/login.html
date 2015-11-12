@@ -1,0 +1,103 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+  <div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <div class = "row">
+        <div class= "col-xs-8 col-xs-offset-2">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">LOGIN</a></li>
+                <li role="presentation"><a href="#cadastro" aria-controls="cadastro" role="tab" data-toggle="tab">CADASTRO</a></li>
+          </ul>
+      </div>
+  </div>
+
+  <!-- Tab panes -->
+  <div class = "row">
+    <div class= "col-xs-8 col-xs-offset-2">
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane {{ loginActive }}" id="login">
+            <!-- close tab pane row -->
+            <div class="form-group"></div>
+            <form name = "lform" class="form" method="post" action = "{{ url_for('login') }}">
+            {{ lform.hidden_tag() }}
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></div>
+                  {{ lform.email(placeholder = "Usuario", class = "form-control") }}
+                  {% for error in lform.email.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}<br>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></div>
+                  {{ lform.password(placeholder = "Senha", class = "form-control") }}
+                  {% for error in lform.password.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}<br>
+                </div>
+             </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+        </div>
+
+        <div role="tabpanel" class="tab-pane {{ registerActive }}" id="cadastro">
+            <div class="form-group"></div>
+            <form name = "rform" class="form" method="post" action = "{{ url_for('register') }}">
+            {{rform.hidden_tag() }}
+               <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></div>
+                  {{ rform.name(placeholder = "Nome", class = "form-control") }}
+                  {% for error in rform.name.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}<br>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></div>
+                  {{ rform.email(placeholder = "Email", class = "form-control") }}
+                  {% for error in rform.email.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}<br>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-book" aria-hidden="true"></div>
+                  {{ rform.college(placeholder = "Sua Universidade", class = "form-control") }}
+                  {% for error in rform.college.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}<br>
+                </div>
+             </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></div>
+                  {{ rform.password(placeholder = "Senha", class = "form-control") }}
+                  {% for error in rform.password.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}<br>
+                </div>
+             </div>
+
+              <button type="submit" class="btn btn-primary  btn-large btn-block">Cadastro</button>
+            </form>
+        </div> 
+
+      </div><!-- close tab content -->
+    </div> <!-- close tab pane col -->
+  </div> <!-- close tab pane row -->
+
+{% endblock %}
