@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+ <div class = "container">
+  <!-- Professor Information -->
+  <div class = "row">
+
+        <div class= "col-md-3">
+          <img src="/static/img/user_template.png"  class="img-thumbnail">
+      </div>
+
+      <div class= "col-md-9">
+            <h2 style="margin-top: 5px;">{{professor.name}}</h2>
+            <p class="lead" style="margin-bottom: 5px; font-size: 16px;">Professor(a) no(a) {{professor.currentDepartment.name}}</p>
+            <p class="lead" style="margin-bottom: 5px; font-size: 16px;">na {{professor.college}}</p>
+
+            <div class = "row" style="margin-top: 20px;">
+              <div class = "col-md-3">
+                <button type="button" class="btn btn-primary">Avalie Este Professor</button>
+              </div>
+              <div class = "col-md-6" style="padding-top: 5px;">
+                <p class="lead" style="font-size: 16px;">Média Final: {{professor.media_final()}}</p>
+              </div>
+          </div>
+
+      </div>
+    </div> <!-- Close Professor Information div-->
+
+  {% for c in professor.posts %}
+
+  <!-- Comments -->
+  {% if c == professor.posts.first() %}
+  <div class = "row" style="margin-top: 30px;">
+  {% else %}
+  <div class = "row" style="margin-top: 0px; border-top: 1px solid rgba(180, 180, 180, 1.0);">
+  {% endif %}
+  <div class="row-height">
+
+    <!-- Side with grades-->
+    <div class= "col-md-3 col-height" style = "background-color: rgba(180, 180, 180, 0.5);">
+      <div class="inside">
+        <p class="lead" style="font-size: 14px; margin: 5px 16px">{{ c.timestamp }}</p>
+         
+         <div class = "row" style="margin: 0px 0px;">
+            <div class = "col-md-2">
+              <h4><span class="label label-default">{{ c.ratingTeaching }}</span></h4>
+            </div>
+            <div class = "col-md-10" style="margin-top: 12px;">
+              <p class="lead" style="font-size: 14px; margin-bottom: 0px;">Didática</p>
+            </div>
+        </div> <!-- close  row Didática -->
+
+         <div class = "row " style="margin: 0px 0px;">
+            <div class = "col-md-2">
+              <h4><span class="label label-default">{{ c.ratingEase }}</span></h4>
+            </div>
+            <div class = "col-md-10" style="margin-top: 12px;">
+              <p class="lead" style="font-size: 14px;">Facilidade</p>
+            </div>
+        </div> <!-- close close row Facilidade -->
+
+      </div> <!-- close inside -->
+  </div> <!-- close div -->
+
+    <!-- Side with course and average grade-->
+    <div class= "col-md-2 col-height border-left-content" style = "background-color: rgba(180, 180, 180, 0.3);">
+      <div class="inside">
+      <p class="lead" style="font-size: 14px; margin-bottom: 20px; margin-top: 20px;">Engenharia de Software</p>
+      <p class="lead" style="font-size: 14px; margin-bottom: 20px; margin-top: 20px;">Nota Recebida: {{c.gradeOnCourse}}</p>
+    </div>
+    </div>
+
+
+    <div class = "col-md-7 col-height " style = "background-color: rgba(180, 180, 180, 0.3);">
+    <div class="inside">
+      <p class="lead" style="font-size: 14px; margin-bottom: 20px;">{{c.body}}</p>
+
+      {% if current_user.isAdmin() %}
+      <button type="button" class="btn btn-danger btn-sm">Remover</button>
+      {% endif %}
+    </div> <!-- close comment text inside -->
+    </div> <!-- close comment text column -->
+ 
+  </div> <!-- close row height -->
+  </div> <!-- close comment row -->
+  {% endfor %}
+
+
+</div> <!-- close container -->
+{% endblock %}

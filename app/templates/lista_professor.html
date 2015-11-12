@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class = "container">
+  <h3> Professores no {{ dept.name }} <h3>
+
+  <table class="table table-hover table-bordered" style = "font-size: 14px">
+  <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          {% if current_user.isAdmin() %}
+          <th>Ação</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+       {% for p in dept.professors %}
+        <tr>
+          <th scope="row"><a href="{{url_for("detailProfessor",id = p.id)}}">{{ p.id }}</a></th>
+          <td><a href="{{url_for("detailProfessor",id = p.id)}}">{{ p.name }}</a></td>
+          {% if current_user.isAdmin() %}
+          <td><a class="btn btn-default" href="#" role="button">Remover</a></td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+        <!-- <tr>
+
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td><a class="btn btn-default" href="#" role="button">Remover</a></td>
+        </tr>
+        <tr>
+
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td><a class="btn btn-default" href="#" role="button">Remover</a></td>
+        </tr> -->
+
+      </tbody>
+</table>
+
+</div> <!-- close container -->
+
+ 
+{% endblock %}

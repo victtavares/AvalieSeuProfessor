@@ -1,4 +1,6 @@
 from app import app, models, db
+from flask.ext.login import current_user
+import datetime
 #admin User
 if not models.User.query.filter_by(email="victtavares1@gmail.com").first():
   u = models.User(email='victtavares1@gmail.com', name='Victor Tavares', password='gato',college = "Universidade Federal da Bahia", role =1)
@@ -35,7 +37,40 @@ if models.Professor.query.count() == 0:
   db.session.add(p3)
   db.session.add(p4)
 
+
+  d1 = models.Post(body="Este professor e muito bom! Aulas super interresantes e com uma didatica incrivel.",
+                          course = "Teoria da Computacao",
+                          ratingTeaching = "9",
+                          ratingEase = "9",
+                          gradeOnCourse = "8",
+                          timestamp = datetime.datetime.utcnow(),
+                          hideUser = False,
+                          author = u,
+                          about = p3)
+
+  d2 = models.Post(body="Gostei da materia! bem facil!",
+                          course = "Engenharia de software",
+                          ratingTeaching = "7",
+                          ratingEase = "9",
+                          gradeOnCourse = "6",
+                          timestamp = datetime.datetime.utcnow(),
+                          hideUser = False,
+                          author = u,
+                          about = p3)
+
+  db.session.add(c1)
+  db.session.add(c2)
+
+
+
 db.session.commit()
+
+posts = models.Post.query.all()
+for d in posts:
+  print(d.id,d.course, d.author.name, d.about.name)
+
 professors = models.Professor.query.all()
 for p in professors:
   print(p.id,p.name, p.currentDepartment.name)
+
+

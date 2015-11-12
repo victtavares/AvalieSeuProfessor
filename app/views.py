@@ -1,29 +1,43 @@
 from flask import render_template, flash, redirect, request, url_for
 from app import app, db
-from .forms import LoginForm, RegisterForm, RegisterProfessorForm
+from .forms import LoginForm, RegisterForm, RegisterProfessorForm, BuscaForm
 from .models import User, Professor, Department
 from flask.ext.login import login_required, logout_user, login_user, current_user
 from decorators import admin_required, permission_required
 
-@app.route('/')
-@app.route('/index')
+@app.route('/',  methods=['GET','POST'])
+@app.route('/index',  methods=['GET','POST'])
 @login_required
 def index():
-    user = {'nickname': 'Victor'}  # fake user
-    posts = [  # fake array of posts
-        { 
-            'author': {'nickname': 'John'}, 
-            'body': 'Beautiful day in Portland!' 
-        },
-        { 
-            'author': {'nickname': 'Susan'}, 
-            'body': 'The Avengers movie was so cool!' 
-        }
-    ]
+    bForm = BuscaForm()
+
+    if bForm.validate_on_submit():
+        selectedDep = bForm.department.data
+        return redirect(url_for("listProfessores", department = selectedDep))
+
     return render_template("index.html",
-                           title='Home',
-                           user=user,
-                           posts=posts)
+                           form = bForm)
+
+
+@app.route('/professores/<department>',  methods=['GET','POST'])
+@login_required
+def listProfessores(department):
+    dept = Department.query.get(department)
+    print(dept)
+    return render_template("lista_professor.html",
+                            dept = dept,
+                            professors = dept.professors)
+
+@app.route('/professor/<id>',  methods=['GET','POST'])
+@login_required
+def detailProfessor(id):
+    professor = Professor.query.get(id)
+
+    return render_template("detail_professor.html",
+                            professor = professor)
+    
+
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

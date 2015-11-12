@@ -31,6 +31,12 @@ class RegisterProfessorForm(Form):
       self.department.choices = [(current.id, current.name)
                                   for current in Department.query.order_by(Department.name).all()]
 
-
+class BuscaForm(Form):
+  department = SelectField('Department', coerce = int, validators=[DataRequired("Campo nao pode ser em branco")])
+  
+  def __init__(self, *args, **kwargs):
+      super(BuscaForm, self).__init__(*args, **kwargs)
+      self.department.choices = [(current.id, current.name)
+                                  for current in Department.query.order_by(Department.name).all()]
 
 

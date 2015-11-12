@@ -1,7 +1,8 @@
-from app import db, login_manager
+from app import app, db, login_manager
 from flask.ext.login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-#import flask.ext.whooshalchemy as whooshalchemy
+import flask.ext.whooshalchemy as whooshalchemy
+enable_search = True
 
 ROLE_USER = 0
 ROLE_ADMIN = 1
@@ -12,6 +13,7 @@ def load_user(user_id):
 
 
 class User(db.Model):
+    __searchable__ = ['name']
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(64))
     email = db.Column(db.String(120), unique = True)
@@ -20,6 +22,7 @@ class User(db.Model):
     role = db.Column(db.SmallInteger, default = ROLE_USER)
     posts = db.relationship('Post', backref = 'author', lazy = 'dynamic')
 
+    
     @property
     def password(self):
         raise AttributeError('password is not a readable attribute')
@@ -71,8 +74,12 @@ class Post(db.Model):
     def __repr__(self):
         return '<Post %r>' % (self.body)
 
-class Professor(db.Model):
+    def nota_ponderada(self):
+        return self.ratingEase*0.4 + self.ratingTeaching*0.6
 
+
+class Professor(db.Model):
+    __searchable__ = ['name']
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(64))
     rating = db.Column(db.Integer)
@@ -82,6 +89,22 @@ class Professor(db.Model):
     department_id = db.Column(db.Integer, db.ForeignKey('department.id'))
 
     
+    def media_final(self):
+        total = self.posts.count()
+        acum = 0
+        #7 e a nota padrao
+        if total == 0:
+            return 7
+
+        for p in self.posts:
+            acum += p.nota_ponderada()
+        print(acum)
+        return float(acum) / float(total)
+
+
 
     def __repr__(self):
         return '<Professor %r>' % (self.first_name)
+
+whooshalchemy.whoosh_index(app, Professor)
+

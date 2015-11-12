@@ -5,7 +5,7 @@
         <meta charset="UTF-8"/>
         <title>Sistema de Avaliação</title>
         <link href="/static/css/bootstrap.css" rel="stylesheet">
-        
+        <link href="/static/css/same-height.css" rel="stylesheet">
         <!-- Chamadas JS -->
         <script src="/static/js/jquery.min.js"></script>
         <script src="/static/js/bootstrap.min.js"></script>        
@@ -42,15 +42,12 @@
     </nav>
 
     <div class = "container">
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-        {% for message in messages %}
-            <li>{{ message }} </li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
     {% block content %}{% endblock %}
     </div> <!-- close container -->
 
