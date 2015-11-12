@@ -15,7 +15,7 @@
 
             <div class = "row" style="margin-top: 20px;">
               <div class = "col-md-3">
-                <button type="button" class="btn btn-primary">Avalie Este Professor</button>
+              <a class="btn btn-primary" href="{{url_for("avaliaProfessor",id = professor.id)}}" role="button">Avalie Este Professor</a></td>
               </div>
               <div class = "col-md-6" style="padding-top: 5px;">
                 <p class="lead" style="font-size: 16px;">Média Final: {{professor.media_final()}}</p>

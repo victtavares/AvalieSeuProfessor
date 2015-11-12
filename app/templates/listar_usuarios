@@ -20,7 +20,7 @@
           <th scope="row"><a href="{{url_for("detailProfessor",id = p.id)}}">{{ p.id }}</a></th>
           <td><a href="{{url_for("detailProfessor",id = p.id)}}">{{ p.name }}</a></td>
           {% if current_user.isAdmin() %}
-          <td><a class="btn btn-danger" href="#" role="button">Remover</a></td>
+          <td><a class="btn btn-default" href="#" role="button">Remover</a></td>
           {% endif %}
         </tr>
         {% endfor %}

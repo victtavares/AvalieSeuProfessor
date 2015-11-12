@@ -58,8 +58,8 @@ if models.Professor.query.count() == 0:
                           author = u,
                           about = p3)
 
-  db.session.add(c1)
-  db.session.add(c2)
+  db.session.add(d1)
+  db.session.add(d2)
 
 
 
@@ -71,6 +71,6 @@ for d in posts:
 
 professors = models.Professor.query.all()
 for p in professors:
-  print(p.id,p.name, p.currentDepartment.name)
+  print(p.id,p.name, p.currentDepartment.name, p.wasAcceptedByAdmin)
 
 

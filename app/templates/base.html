@@ -31,7 +31,8 @@
           <li><a href="{{ url_for('index') }}">Buscar</a></li>
             <li><a href="{{ url_for('adicionarProfessor') }}">Adicionar Professor</a></li>
             {% if current_user.isAdmin() %}
-            <li><a href="#contact">Usuários</a></li>
+            <li><a href="{{ url_for('listarUsuarios') }}">Usuários</a></li>
+            <li><a href="{{ url_for('listarProfessores') }}">Professores Pendentes</a></li>
             {% endif %}
             <li><a href="{{ url_for('logout') }}">Sair</a></li>
           </ul>
