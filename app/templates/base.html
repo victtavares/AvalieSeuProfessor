@@ -1,14 +1,43 @@
+
+<!DOCTYPE html>
 <html>
-  <head>
-    {% if title %}
-    <title>{{ title }} - microblog</title>
-    {% else %}
-    <title>Welcome to microblog</title>
-    {% endif %}
-  </head>
-  <body>
-    <div>Microblog: <a href="/index">Home</a></div>
-    <hr>
+    <head lang="pt-br">
+        <meta charset="UTF-8"/>
+        <title>Sistema de Avaliação</title>
+        <link href="/static/css/bootstrap.css" rel="stylesheet">
+        
+        <!-- Chamadas JS -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>        
+    </head>
+    <body>
+
+     <nav class="navbar navbar-default ">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="#">Avalie seu Professor</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Login/Cadastro</a></li>
+            <li><a href="#about">Adicionar Professor</a></li>
+            <li><a href="#contact">Usuários</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class = "container">
     {% block content %}{% endblock %}
-  </body>
+    </div> <!-- close container -->
+
+    </body>
 </html>
+
