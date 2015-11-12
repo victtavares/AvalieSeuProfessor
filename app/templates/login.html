@@ -18,16 +18,19 @@
   <div class = "row">
     <div class= "col-xs-8 col-xs-offset-2">
       <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="login">
+        <div role="tabpanel" class="tab-pane {{ loginActive }}" id="login">
             <!-- close tab pane row -->
             <div class="form-group"></div>
-            <form class="form" method="post" action = "{{ url_for('login') }}">
-
+            <form name = "lform" class="form" method="post" action = "{{ url_for('login') }}">
+            {{ lform.hidden_tag() }}
 
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></div>
                   {{ lform.email(placeholder = "Usuario", class = "form-control") }}
+                  {% for error in lform.email.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}<br>
                 </div>
               </div>
 
@@ -35,6 +38,9 @@
                 <div class="input-group">
                   <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></div>
                   {{ lform.password(placeholder = "Senha", class = "form-control") }}
+                  {% for error in lform.password.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}<br>
                 </div>
              </div>
 
@@ -42,14 +48,17 @@
             </form>
         </div>
 
-        <div role="tabpanel" class="tab-pane" id="cadastro">
+        <div role="tabpanel" class="tab-pane {{ registerActive }}" id="cadastro">
             <div class="form-group"></div>
-            <form class="form" method="post" action = "{{ url_for('register') }}">
-
+            <form name = "rform" class="form" method="post" action = "{{ url_for('register') }}">
+            {{rform.hidden_tag() }}
                <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></div>
                   {{ rform.name(placeholder = "Nome", class = "form-control") }}
+                  {% for error in rform.name.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}<br>
                 </div>
               </div>
 
@@ -57,13 +66,19 @@
                 <div class="input-group">
                   <div class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></div>
                   {{ rform.email(placeholder = "Email", class = "form-control") }}
+                  {% for error in rform.email.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}<br>
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="input-group">
-                  <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></div>
-                  {{ rform.university(placeholder = "Sua Universidade", class = "form-control") }}
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-book" aria-hidden="true"></div>
+                  {{ rform.college(placeholder = "Sua Universidade", class = "form-control") }}
+                  {% for error in rform.college.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}<br>
                 </div>
              </div>
 
@@ -71,6 +86,9 @@
                 <div class="input-group">
                   <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></div>
                   {{ rform.password(placeholder = "Senha", class = "form-control") }}
+                  {% for error in rform.password.errors %}
+                  <span style="color: red;">[{{ error }}]</span>
+                  {% endfor %}<br>
                 </div>
              </div>
 

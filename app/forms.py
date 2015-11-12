@@ -1,15 +1,36 @@
 from flask.ext.wtf import Form
-from wtforms import StringField, BooleanField, PasswordField
-from wtforms.validators import DataRequired
+from wtforms import StringField, BooleanField, PasswordField, SelectField, ValidationError
+from wtforms.validators import DataRequired, Email
+from .models import User, Department
 
 class LoginForm(Form):
-    email = StringField('Email', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired("Campo nao pode ser em branco"), Email()])
+    password = PasswordField('Password', validators=[DataRequired("Campo nao pode ser em branco")])
 
 
 class RegisterForm(Form):
-    name =  StringField('name', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired()])
-    university = StringField('Universidade', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+
+
+    name =  StringField('nameR', validators=[DataRequired("Campo nao pode ser em branco")])
+    email = StringField('EmailR', validators=[DataRequired("Campo nao pode ser em branco")])
+    college = StringField('Universidade', validators=[DataRequired("Campo nao pode ser em branco")])
+    password = PasswordField('PasswordR', validators=[DataRequired("Campo nao pode ser em branco")])
+
+    def validate_email(self, field):
+      print(field.data)
+      if User.query.filter_by(email=field.data).first():
+        raise ValidationError('Email ja cadastrado.')
+
+class RegisterProfessorForm(Form):
+
+    name =  StringField('name', validators=[DataRequired("Campo nao pode ser em branco")])
+    department = SelectField('Department', coerce = int, validators=[DataRequired("Campo nao pode ser em branco")])
+
+    def __init__(self, *args, **kwargs):
+      super(RegisterProfessorForm, self).__init__(*args, **kwargs)
+      self.department.choices = [(current.id, current.name)
+                                  for current in Department.query.order_by(Department.name).all()]
+
+
+
 
