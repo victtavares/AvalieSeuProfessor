@@ -3,7 +3,7 @@ from app import app, db
 from .forms import LoginForm, RegisterForm, RegisterProfessorForm, BuscaForm, PostForm
 from .models import User, Professor, Department, Post
 from flask.ext.login import login_required, logout_user, login_user, current_user
-from decorators import admin_required, permission_required
+from .decorators import admin_required, permission_required
 import datetime
 
 @app.route('/',  methods=['GET','POST'])

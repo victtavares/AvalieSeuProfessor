@@ -28,14 +28,16 @@ for u in users:
 
 
 if models.Professor.query.count() == 0:
-  p1 = models.Professor(name="professor1",currentDepartment=d1)  
-  p2 = models.Professor(name="professor2",currentDepartment=d1)  
-  p3 = models.Professor(name="professor3",currentDepartment=d2)  
-  p4 = models.Professor(name="professor4",currentDepartment=d2, wasAcceptedByAdmin = True)
+  p1 = models.Professor(name="Carlos Almeida de Oliveira",currentDepartment=d1)  
+  p2 = models.Professor(name="Daniel Boaventura Tavares",currentDepartment=d1)  
+  p3 = models.Professor(name="Jonas Almeida Coutinho",currentDepartment=d2)  
+  p4 = models.Professor(name="Clara Luciana de Oliveira",currentDepartment=d2, wasAcceptedByAdmin = True)
+  p5 = models.Professor(name="Daniela Claro de Almeida",currentDepartment=d3, wasAcceptedByAdmin = True)
   db.session.add(p1)
   db.session.add(p2)
   db.session.add(p3)
   db.session.add(p4)
+  db.session.add(p5)
 
 
   d1 = models.Post(body="Este professor e muito bom! Aulas super interresantes e com uma didatica incrivel.",
@@ -46,7 +48,7 @@ if models.Professor.query.count() == 0:
                           timestamp = datetime.datetime.utcnow(),
                           hideUser = False,
                           author = u,
-                          about = p3)
+                          about = p4)
 
   d2 = models.Post(body="Gostei da materia! bem facil!",
                           course = "Engenharia de software",
@@ -56,7 +58,7 @@ if models.Professor.query.count() == 0:
                           timestamp = datetime.datetime.utcnow(),
                           hideUser = False,
                           author = u,
-                          about = p3)
+                          about = p4)
 
   db.session.add(d1)
   db.session.add(d2)
